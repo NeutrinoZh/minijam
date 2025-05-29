@@ -7,9 +7,9 @@ namespace Game
     public class EntityDamagable : MonoBehaviour
     {
         [SerializeField] private DamageNumber _damageNumberPrefab;
-        
+
         private Entity _entity;
-        
+
         [Inject]
         public void Construct()
         {
@@ -25,15 +25,18 @@ namespace Game
         {
             _entity.OnHit -= ShowDamageNumber;
         }
-        
+
         public void Damage(float amount)
         {
+            if (!_entity.IsAlive) return;
+
             _entity.Health -= amount;
-            
+
             _entity.OnHit?.Invoke(amount);
-            if (_entity.Health > 0) 
+            if (_entity.Health > 0)
                 return;
-            
+
+            _entity.IsAlive = false;
             _entity.OnDeath?.Invoke();
             Destroy(gameObject);
         }

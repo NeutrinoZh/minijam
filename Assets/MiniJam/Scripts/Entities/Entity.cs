@@ -7,22 +7,24 @@ namespace Game
     {
         public Action OnDeath;
         public Action<float> OnHit;
-        
+
         [SerializeField] private EntityCharacteristicsSo _characteristicsSo;
 
         public const float BaseAttackDuration = 10;
-        
+
         public float MoveSpeed { get; set; }
         public float RangeOfAttack { get; set; }
         public float AttackSpeed { get; set; }
         public float Attack { get; set; }
         public float Health { get; set; }
         public bool CanMove { get; set; }
+        public bool IsAlive { get; set; }
         public float MaxHealth => _characteristicsSo.MaxHealth;
 
         private void Awake()
         {
             CanMove = true;
+            IsAlive = true;
             MoveSpeed = _characteristicsSo.MoveSpeed;
             RangeOfAttack = _characteristicsSo.RangeOfAttack;
             AttackSpeed = _characteristicsSo.AttackSpeed;
