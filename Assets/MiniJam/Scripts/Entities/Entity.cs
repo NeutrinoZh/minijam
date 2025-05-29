@@ -18,6 +18,7 @@ namespace Game
         public float Attack { get; set; }
         public float Health { get; set; }
         public bool CanMove { get; set; }
+        public float MaxHealth => _characteristicsSo.MaxHealth;
 
         private void Awake()
         {

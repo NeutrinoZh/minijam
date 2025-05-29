@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Game
@@ -9,7 +10,7 @@ namespace Game
         [SerializeField] private Enemy _enemyPrefab;
         [SerializeField] private Vector2 _range;
         [SerializeField] private float _startSpawnDelay;
-        [SerializeField] private float _decreaseFactor;
+        [SerializeField] private float _multiplierFactor;
         
         private float _spawnDelay;
         private DiContainer _container;
@@ -34,7 +35,7 @@ namespace Game
         {
             while (true)
             {
-                _spawnDelay -= _decreaseFactor;
+                _spawnDelay *= _multiplierFactor;
                 yield return new WaitForSeconds(1);
             }
         }
