@@ -42,8 +42,8 @@ namespace Game
         {
             while (true)
             {
-                yield return new WaitForSeconds(caster.Cooldown);
                 caster.Cast(transform);
+                yield return new WaitForSeconds(caster.Cooldown);
             }
         }
     }

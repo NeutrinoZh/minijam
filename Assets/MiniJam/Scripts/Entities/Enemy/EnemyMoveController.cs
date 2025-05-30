@@ -24,6 +24,7 @@ namespace Game
             
             var direction = (_player.transform.position - transform.position).normalized;
             _rigidbody.velocity = direction * _entity.MoveSpeed;
+            transform.forward = direction;
         }
     }
 }

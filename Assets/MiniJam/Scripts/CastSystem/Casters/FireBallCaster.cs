@@ -11,8 +11,8 @@ namespace Game
         public float Speed => Level >= _spell.Speed.Count ? _spell.Speed.Last() : _spell.Speed[Level];
         
         private readonly FireBallSpell _spell;
-        private ListOfObject<Enemy> _enemies;
-        private DiContainer _container;
+        private readonly ListOfObject<Enemy> _enemies;
+        private readonly DiContainer _container;
         
         [Inject]
         public FireBallCaster(DiContainer container, FireBallSpell spell, ListOfObject<Enemy> enemies) : base(spell)
@@ -25,12 +25,20 @@ namespace Game
         // ReSharper disable Unity.PerformanceAnalysis
         protected override void CastInternal(Transform caster)
         {
-            var nearestEnemy = _enemies.GetNearestTo(caster.position);
-            var direction = (nearestEnemy.transform.position -  caster.position).normalized;
+            const float angleOffset = 15f;
             
-            var clone = _container.InstantiatePrefabForComponent<FireBallProjectile>(_spell.ProjectilePrefab);
-            clone.Construct(this, direction);
-            clone.transform.position = caster.position;
+            var nearestEnemy = _enemies.GetNearestTo(caster.position);
+            var directionToEnemy = (nearestEnemy.transform.position -  caster.position).normalized;
+            
+            for (var i = -1; i <= 1; ++i)
+            { 
+                var angle = angleOffset * i;
+                var direction = Quaternion.AngleAxis(angle, Vector3.up) * directionToEnemy;
+                
+                var clone = _container.InstantiatePrefabForComponent<FireBallProjectile>(_spell.ProjectilePrefab);
+                clone.Construct(this, direction);
+                clone.transform.position = caster.position;
+            }
         }
     }
 }

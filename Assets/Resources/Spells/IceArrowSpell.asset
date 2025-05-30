@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783b0d08a593403891c70afffde1ae88, type: 3}
+  m_Name: IceArrowSpell
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 21300000, guid: d87a83f4156717f4a9465f6797388021,
+    type: 3}
+  <Title>k__BackingField: Ice Arrow
+  <Description>k__BackingField: 'Launch a razor-sharp ice arrow at the nearest enemy,
+    freezing the air as it flies and slowing them on impact. '
+  <MaxLevel>k__BackingField: 5
+  <Cooldown>k__BackingField:
+  - 4.5
+  - 3.5
+  - 2.3
+  - 1
+  - 0.6
+  <ProjectilePrefab>k__BackingField: {fileID: 8963859544603979715, guid: e912c160dd95e0148a878df61721c229,
+    type: 3}
+  <Damage>k__BackingField:
+  - 7
+  - 9
+  - 12
+  - 16
+  - 19
+  <Speed>k__BackingField:
+  - 9
