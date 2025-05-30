@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -7,33 +8,44 @@ namespace Game
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] private List<Spell> _spells;
-        private readonly List<Caster> _casters = new();
+        [SerializeField] private float _baseRequiredExperienceForLevelUp;
+        [SerializeField] private float _multiplierFactorOfRequiredExperienceByLevel;
         
-        private CastersRegister _castersRegister;
+        public event Action OnLevelUp;
+        
+        public int Level { get; private set; }
+        public float Experience { get; private set; }
+        public float RequiredExperienceForLevelUp { get; private set; }
 
+        private PoolOfObject<Experience> _experiencePool;
+        
         [Inject]
-        public void Construct(CastersRegister casterRegister)
+        public void Construct(PoolOfObject<Experience> experiencePool)
         {
-            _castersRegister = casterRegister;
+            _experiencePool = experiencePool;
         }
         
         private void Awake()
         {
-            foreach (var spell in _spells)
-                _casters.Add(_castersRegister.CreateNewCasterForSpell(spell.GetType()));
-            
-            foreach (var caster in _casters) 
-                StartCoroutine(StartCasting(caster));
+            RequiredExperienceForLevelUp = _baseRequiredExperienceForLevelUp;
         }
-        
-        private IEnumerator StartCasting(Caster caster)
+
+        private void OnCollisionEnter(Collision other)
         {
-            while (true)
-            {
-                yield return new WaitForSeconds(caster.Cooldown);
-                caster.Cast(transform);
-            }
+            if (!other.transform.TryGetComponent(out Experience experience))
+                return;
+            
+            _experiencePool.Destroy(experience);
+            
+            Experience += 1;
+            if (Experience < RequiredExperienceForLevelUp) 
+                return;
+            
+            Level += 1;
+            Experience = 0;
+            RequiredExperienceForLevelUp *= _multiplierFactorOfRequiredExperienceByLevel;
+            
+            OnLevelUp?.Invoke();
         }
     }
 }

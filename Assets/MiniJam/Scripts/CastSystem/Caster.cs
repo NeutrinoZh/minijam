@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Game
@@ -10,12 +11,18 @@ namespace Game
             Spell = spell;
         }
         
+        public event Action OnCast;
         public Spell Spell { get; private set; }
-        
         public int Level { get; set; }
         
         public float Cooldown => Level >= Spell.Cooldown.Count ? Spell.Cooldown.Last() : Spell.Cooldown[Level];
         
-        public abstract void Cast(Transform caster);
+        protected abstract void CastInternal(Transform caster);
+
+        public void Cast(Transform caster)
+        {
+            CastInternal(caster);
+            OnCast?.Invoke();
+        }
     }
 }

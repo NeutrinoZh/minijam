@@ -12,14 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa1937d4348453eb4429fecdf1405a5, type: 3}
   m_Name: MagicFieldSpell
   m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 21300000, guid: 69f4c89e4b1de164485dea299438726f,
+    type: 3}
+  <Title>k__BackingField: Magic Field
+  <Description>k__BackingField: Creates a powerful magical field that repels all
+    enemies within its radius, knocking them back and dealing damage.
+  <MaxLevel>k__BackingField: 5
   <Cooldown>k__BackingField:
+  - 5
+  - 4
   - 3
   <ProjectilePrefab>k__BackingField: {fileID: -6533492903021583423, guid: 462a771224ed15a49a9663602749569f,
     type: 3}
-  <MaxLevel>k__BackingField: 0
   <Duration>k__BackingField:
   - 2
   <Radius>k__BackingField:
+  - 2
+  - 3
   - 4
+  - 5
+  - 6
   <Damage>k__BackingField:
   - 5
+  - 7
+  - 9
+  - 12
+  - 15

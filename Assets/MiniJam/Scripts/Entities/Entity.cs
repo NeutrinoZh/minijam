@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game
 {
@@ -8,7 +9,7 @@ namespace Game
         public Action OnDeath;
         public Action<float> OnHit;
 
-        [SerializeField] private EntityCharacteristicsSo _characteristicsSo;
+        [SerializeField] private EntityCharacteristics _characteristics;
 
         public const float BaseAttackDuration = 10;
 
@@ -17,19 +18,21 @@ namespace Game
         public float AttackSpeed { get; set; }
         public float Attack { get; set; }
         public float Health { get; set; }
+        public float RangeOfPickUp { get; set; }
         public bool CanMove { get; set; }
         public bool IsAlive { get; set; }
-        public float MaxHealth => _characteristicsSo.MaxHealth;
+        public float MaxHealth => _characteristics.MaxHealth;
 
         private void Awake()
         {
             CanMove = true;
             IsAlive = true;
-            MoveSpeed = _characteristicsSo.MoveSpeed;
-            RangeOfAttack = _characteristicsSo.RangeOfAttack;
-            AttackSpeed = _characteristicsSo.AttackSpeed;
-            Attack = _characteristicsSo.Attack;
-            Health = _characteristicsSo.MaxHealth;
+            MoveSpeed = _characteristics.MoveSpeed;
+            RangeOfAttack = _characteristics.RangeOfAttack;
+            AttackSpeed = _characteristics.AttackSpeed;
+            Attack = _characteristics.Attack;
+            Health = _characteristics.MaxHealth;
+            RangeOfPickUp = _characteristics.RangeOfPickUp;
         }
     }
 }

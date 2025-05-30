@@ -23,7 +23,7 @@ namespace Game
         }
         
         // ReSharper disable Unity.PerformanceAnalysis
-        public override void Cast(Transform caster)
+        protected override void CastInternal(Transform caster)
         {
             var nearestEnemy = _enemies.GetNearestTo(caster.position);
             var direction = (nearestEnemy.transform.position -  caster.position).normalized;

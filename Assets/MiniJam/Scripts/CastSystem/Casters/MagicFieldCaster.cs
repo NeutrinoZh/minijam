@@ -21,7 +21,7 @@ namespace Game
             _spell = spell;
         }
         
-        public override void Cast(Transform caster)
+        protected override void CastInternal(Transform caster)
         {
             var clone = _container.InstantiatePrefabForComponent<MagicFieldProjectile>(_spell.ProjectilePrefab, caster);
             clone.Construct(this);
