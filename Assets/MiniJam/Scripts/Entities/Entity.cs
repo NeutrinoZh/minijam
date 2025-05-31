@@ -10,7 +10,10 @@ namespace Game
         public Action<float> OnHit;
 
         [SerializeField] private EntityCharacteristics _characteristics;
-
+        
+        private Rigidbody _rigidbody;
+        private bool _canMove;
+        
         public const float BaseAttackDuration = 10;
 
         public float MoveSpeed { get; set; }
@@ -19,12 +22,22 @@ namespace Game
         public float Attack { get; set; }
         public float Health { get; set; }
         public float RangeOfPickUp { get; set; }
-        public bool CanMove { get; set; }
+
+        public bool CanMove
+        {
+            get => _canMove;
+            set  {
+                _canMove = value;
+                _rigidbody.velocity = Vector3.zero;
+            }
+        }
         public bool IsAlive { get; set; }
         public float MaxHealth => _characteristics.MaxHealth;
 
         private void Awake()
         {
+            _rigidbody = GetComponent<Rigidbody>();
+            
             CanMove = true;
             IsAlive = true;
             MoveSpeed = _characteristics.MoveSpeed;

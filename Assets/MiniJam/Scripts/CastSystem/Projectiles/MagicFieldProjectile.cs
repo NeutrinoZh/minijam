@@ -12,7 +12,8 @@ namespace Game
         private static readonly int k_lifetimeId = Shader.PropertyToID("Lifetime");
         private static readonly int k_sizeId = Shader.PropertyToID("Size");
         
-        private VisualEffect _visualEffect;
+        [SerializeField] private VisualEffect _firstEffect;
+        [SerializeField] private VisualEffect _secondEffect;
         private SphereCollider _collider;
         private MagicFieldCaster _caster;
         
@@ -26,7 +27,6 @@ namespace Game
         private void Awake()
         {
             _collider = GetComponentInChildren<SphereCollider>();
-            _visualEffect = GetComponentInChildren<VisualEffect>();
         }
         
         private void Start()
@@ -34,8 +34,11 @@ namespace Game
             if (TryGetComponent(out TempObject tempObject))
                 tempObject.TimeOfLife = _caster.Duration;
 
-            _visualEffect.SetFloat(k_lifetimeId, _caster.Duration);
-            _visualEffect.SetFloat(k_sizeId, _caster.Radius * 2f);
+            _firstEffect.SetFloat(k_lifetimeId, _caster.Duration);
+            _firstEffect.SetFloat(k_sizeId, _caster.Radius * 2f);
+            _secondEffect.SetFloat(k_lifetimeId, _caster.Duration);
+            _secondEffect.SetFloat(k_sizeId, _caster.Radius * 2f);
+            
             _collider.radius = 0;
 
             Tween.Custom(

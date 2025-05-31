@@ -17,3 +17,4 @@ MonoBehaviour:
   <AttackSpeed>k__BackingField: 20
   <Attack>k__BackingField: 1
   <MaxHealth>k__BackingField: 11
+  <RangeOfPickUp>k__BackingField: 0
