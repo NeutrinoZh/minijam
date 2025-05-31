@@ -28,7 +28,8 @@ namespace Game
 
         public void Damage(float amount)
         {
-            if (!_entity.IsAlive) return;
+            if (!_entity.IsAlive)
+                return;
 
             _entity.Health -= amount;
 
@@ -38,7 +39,11 @@ namespace Game
 
             _entity.IsAlive = false;
             _entity.OnDeath?.Invoke();
-            Destroy(gameObject);
+            
+            if (TryGetComponent(out BoxCollider boxCollider))
+                boxCollider.enabled = false;
+            if (TryGetComponent(out Rigidbody body))
+                body.isKinematic = true;
         }
 
         private void ShowDamageNumber(float amount)

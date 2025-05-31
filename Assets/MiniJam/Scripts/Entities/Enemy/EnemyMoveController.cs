@@ -19,7 +19,7 @@ namespace Game
 
         private void FixedUpdate()
         {
-            if (!_entity.CanMove || !_player) 
+            if (!_entity.IsAlive || !_entity.CanMove || !_player) 
                 return;
             
             var direction = (_player.transform.position - transform.position).normalized;

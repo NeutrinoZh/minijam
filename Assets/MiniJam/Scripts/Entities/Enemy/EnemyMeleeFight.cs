@@ -25,7 +25,7 @@ namespace Game
 
         private void Update()
         {
-            if (_attacking || !_player)
+            if (_attacking || !_player || !_entity.IsAlive)
                 return;
             
             var offset = _player.transform.position - transform.position;

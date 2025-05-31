@@ -18,16 +18,28 @@ namespace Game
         public float RequiredExperienceForLevelUp { get; private set; }
 
         private PoolOfObject<Experience> _experiencePool;
+        private Entity _playerAsEntity;
         
         [Inject]
         public void Construct(PoolOfObject<Experience> experiencePool)
         {
             _experiencePool = experiencePool;
+            _playerAsEntity = GetComponent<Entity>();
         }
         
         private void Awake()
         {
             RequiredExperienceForLevelUp = _baseRequiredExperienceForLevelUp;
+        }
+
+        private void Start()
+        {
+            _playerAsEntity.OnDeath += OnDeath;
+        }
+
+        private void OnDestroy()
+        {
+            _playerAsEntity.OnDeath -= OnDeath;
         }
 
         private void OnCollisionEnter(Collision other)
@@ -46,6 +58,11 @@ namespace Game
             RequiredExperienceForLevelUp *= _multiplierFactorOfRequiredExperienceByLevel;
             
             OnLevelUp?.Invoke();
+        }
+
+        private void OnDeath()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

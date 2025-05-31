@@ -512,7 +512,7 @@ MonoBehaviour:
   _bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 20, y: -6, z: 20}
-  _cameraOffset: {x: 0, y: 0, z: -7}
+  _cameraOffset: {x: 0, y: 0, z: -8}
   _cameraSpeed: 10
 --- !u!114 &384120447 stripped
 MonoBehaviour:
@@ -1389,7 +1389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 73308400270477803, guid: 09afe802418efba439ed9404cd2e93a9,
     type: 3}
-  _range: {x: 30, y: 50}
+  _range: {x: 35, y: 50}
   _startSpawnDelay: 5
   _multiplierFactor: 0.99
 --- !u!1 &1403109840

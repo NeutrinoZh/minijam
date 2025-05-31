@@ -2,20 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using PrimeTween;
 using UnityEngine;
 
 namespace Game
 {
     public class EnemyAnimator : MonoBehaviour
     {
+        [SerializeField] private Material _deathMaterial;
+        
         private static readonly int k_deathId = Animator.StringToHash("Base Layer.Death");
         private static readonly int k_attackId = Animator.StringToHash("Base Layer.Attack");
+        private static readonly int k_opacity = Shader.PropertyToID("_Opacity");
 
         private Animator _animator;
         private Entity _entity;
         private EnemyMeleeFight _enemyMeleeFight;
 
         private AnimationClip _attackClip;
+        private AnimationClip _deathClip;
         
         private void Awake()
         {
@@ -31,6 +36,11 @@ namespace Game
                 .animationClips
                 .First(c => c.name == "Attack");
             
+            _deathClip = _animator
+                .runtimeAnimatorController
+                .animationClips
+                .First(c => c.name == "Death");
+            
             _entity.OnDeath += DeathHandle;
             _enemyMeleeFight.OnAttack += AttackHandle;
         }
@@ -43,7 +53,21 @@ namespace Game
 
         private void DeathHandle()
         {
+            var renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (var skinned in renderers)
+            {
+                var instance = new Material(_deathMaterial); 
+                skinned.material = instance;
+                
+                Tween.Custom(
+                    1f, 0f, _deathClip.length,
+                    value => instance.SetFloat(k_opacity, value),
+                    startDelay: 0.5f
+                );
+            }
+
             _animator.Play(k_deathId);
+            StartCoroutine(DeathRoutine(_deathClip.length));
         }
 
         private void AttackHandle(float duration)
@@ -58,6 +82,12 @@ namespace Game
         {
             yield return new WaitForSeconds(duration);
             _animator.speed = 1;
+        }
+
+        private IEnumerator DeathRoutine(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            Destroy(gameObject);
         }
     }
 }
