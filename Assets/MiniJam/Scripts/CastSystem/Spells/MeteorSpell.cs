@@ -14,6 +14,6 @@ namespace Game
         [field: SerializeField] public float Duration { get; private set; }
         [field: SerializeField] public Vector2 Range { get; private set; }
         [field: SerializeField] public List<float> Damage { get; private set; }
-        [field: SerializeField] public List<float> NumberOfProjectiles { get; private set; }
+        [field: SerializeField] public List<float> Projectiles { get; private set; }
     }
 }

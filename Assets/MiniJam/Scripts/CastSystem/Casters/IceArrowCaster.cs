@@ -7,7 +7,8 @@ namespace Game
     [SpellCaster(SpellType = typeof(IceArrowSpell))]
     public class IceArrowCaster : Caster
     {
-        public float Damage => Level >= _spell.Damage.Count ? _spell.Damage.Last() : _spell.Damage[Level];
+        public float Damage => 
+            (Level >= _spell.Damage.Count ? _spell.Damage.Last() : _spell.Damage[Level]) * PlayerInventory.GetSumOfBuff(nameof(Damage));
         public float Speed => Level >= _spell.Speed.Count ? _spell.Speed.Last() : _spell.Speed[Level];
         
         private readonly IceArrowSpell _spell;
@@ -15,7 +16,8 @@ namespace Game
         private readonly DiContainer _container;
         
         [Inject]
-        public IceArrowCaster(DiContainer container, IceArrowSpell spell, ListOfObject<Enemy> enemies) : base(spell)
+        public IceArrowCaster(DiContainer container, PlayerInventory inventory, IceArrowSpell spell, ListOfObject<Enemy> enemies):
+            base(spell, inventory)
         {
             _container = container;
             _spell = spell;

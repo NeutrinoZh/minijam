@@ -6,6 +6,7 @@ namespace Game
     public class MoveController : MonoBehaviour
     {
         [SerializeField] private float _speed;
+        [SerializeField] private float _rotationSpeed;
         
         private Controls _controls;
         
@@ -18,9 +19,15 @@ namespace Game
         private void Update()
         {
             var direction = _controls.Actions.Player.Move.ReadValue<Vector2>();
-            var velocity = Time.deltaTime * _speed * new Vector3(direction.x, 0, direction.y);
+            if (direction == Vector2.zero)
+                return;
             
-            transform.Translate( velocity);
+            var moveDirection = new Vector3(direction.x, 0, direction.y);
+            var velocity = Time.deltaTime * _speed * moveDirection;
+            
+            var targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime); 
+            transform.position += velocity;
         }
     }
 }

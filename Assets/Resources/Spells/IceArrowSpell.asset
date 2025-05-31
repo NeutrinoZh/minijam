@@ -17,7 +17,7 @@ MonoBehaviour:
   <Title>k__BackingField: Ice Arrow
   <Description>k__BackingField: 'Launch a razor-sharp ice arrow at the nearest enemy,
     freezing the air as it flies and slowing them on impact. '
-  <MaxLevel>k__BackingField: 5
+  <MaxLevel>k__BackingField: 4
   <Cooldown>k__BackingField:
   - 4.5
   - 3.5

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6e9ce0187d4e5991ff4f7e6160d64e, type: 3}
+  m_Name: RingOfPower
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 21300000, guid: e56ebb38585de5a4ba6ae14ea1443c53,
+    type: 3}
+  <Title>k__BackingField: Ring Of Power
+  <Description>k__BackingField: 'Ring Of Power '
+  <MaxLevel>k__BackingField: 3
+  <Damage>k__BackingField:
+  - 0.1
+  - 0.25
+  - 0.4

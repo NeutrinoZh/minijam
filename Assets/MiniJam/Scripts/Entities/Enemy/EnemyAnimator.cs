@@ -53,6 +53,8 @@ namespace Game
 
         private void DeathHandle()
         {
+            const float duration = 2;
+            
             var renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
             foreach (var skinned in renderers)
             {
@@ -60,14 +62,16 @@ namespace Game
                 skinned.material = instance;
                 
                 Tween.Custom(
-                    1f, 0f, _deathClip.length,
+                    1f, 0f, duration - 0.5f,
                     value => instance.SetFloat(k_opacity, value),
                     startDelay: 0.5f
                 );
             }
-
+            
+            _animator.speed = _deathClip.length / duration;
             _animator.Play(k_deathId);
-            StartCoroutine(DeathRoutine(_deathClip.length));
+            
+            StartCoroutine(DeathRoutine(duration));
         }
 
         private void AttackHandle(float duration)

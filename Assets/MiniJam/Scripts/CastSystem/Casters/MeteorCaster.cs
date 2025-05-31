@@ -10,15 +10,18 @@ namespace Game
     [SpellCaster(SpellType = typeof(MeteorSpell))]
     public class MeteorCaster : Caster
     {
-        public float Damage => Level >= _spell.Damage.Count ? _spell.Damage.Last() : _spell.Damage[Level];
-        public float NumberOfProjectiles => Level >= _spell.NumberOfProjectiles.Count ? _spell.NumberOfProjectiles.Last() : _spell.NumberOfProjectiles[Level];
+        public float Damage => 
+            (Level >= _spell.Damage.Count ? _spell.Damage.Last() : _spell.Damage[Level]) * PlayerInventory.GetSumOfBuff(nameof(Damage));
+        public float Projectiles =>
+            (Level >= _spell.Projectiles.Count ? _spell.Projectiles.Last() : _spell.Projectiles[Level]) * PlayerInventory.GetSumOfBuff(nameof(Projectiles));
         public float Delay => _spell.Delay;
         
         private readonly MeteorSpell _spell;
         private readonly DiContainer _container;
         
         [Inject]
-        public MeteorCaster(DiContainer container, MeteorSpell spell) : base(spell)
+        public MeteorCaster(DiContainer container, PlayerInventory inventory, MeteorSpell spell):
+            base(spell, inventory)
         {
             _container = container;
             _spell = spell;
@@ -26,7 +29,7 @@ namespace Game
 
         protected override void CastInternal(Transform caster)
         {
-            for (var i = 0; i < NumberOfProjectiles; i++)
+            for (var i = 0; i < Projectiles; i++)
             {
                 var randomOffset = Random.insideUnitCircle * Random.Range(_spell.Range.x, _spell.Range.y);
                 var position = caster.position + new Vector3(randomOffset.x, -0.4f, randomOffset.y);

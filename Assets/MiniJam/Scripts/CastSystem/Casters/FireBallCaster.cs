@@ -15,7 +15,8 @@ namespace Game
         private readonly DiContainer _container;
         
         [Inject]
-        public FireBallCaster(DiContainer container, FireBallSpell spell, ListOfObject<Enemy> enemies) : base(spell)
+        public FireBallCaster(DiContainer container, PlayerInventory inventory, FireBallSpell spell, ListOfObject<Enemy> enemies): 
+            base(spell, inventory)
         {
             _container = container;
             _spell = spell;
@@ -28,7 +29,7 @@ namespace Game
             const float angleOffset = 15f;
             
             var nearestEnemy = _enemies.GetNearestTo(caster.position);
-            var directionToEnemy = (nearestEnemy.transform.position -  caster.position).normalized;
+            var directionToEnemy = (nearestEnemy.transform.position - caster.position).normalized;
             
             for (var i = -1; i <= 1; ++i)
             { 

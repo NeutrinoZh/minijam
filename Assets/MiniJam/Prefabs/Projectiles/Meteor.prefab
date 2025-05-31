@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4445661752221963319}
   - component: {fileID: 2542481565233477511}
   - component: {fileID: -175342563788388254}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Meteor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,6 +191,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Meteor
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cf5f30aafbef3c444a0bbeb38d1ca541,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cf5f30aafbef3c444a0bbeb38d1ca541,
         type: 3}

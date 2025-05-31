@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Zenject;
 
 namespace Game
@@ -19,11 +18,13 @@ namespace Game
 
         private PoolOfObject<Experience> _experiencePool;
         private Entity _playerAsEntity;
+        private ItemSelectionScreen _itemSelectionScreen;
         
         [Inject]
-        public void Construct(PoolOfObject<Experience> experiencePool)
+        public void Construct(PoolOfObject<Experience> experiencePool, ItemSelectionScreen itemSelectionScreen)
         {
             _experiencePool = experiencePool;
+            _itemSelectionScreen = itemSelectionScreen;
             _playerAsEntity = GetComponent<Entity>();
         }
         
@@ -40,6 +41,12 @@ namespace Game
         private void OnDestroy()
         {
             _playerAsEntity.OnDeath -= OnDeath;
+        }
+
+        private void Update()
+        {
+            if (Keyboard.current.xKey.wasPressedThisFrame)
+                _itemSelectionScreen.Show();
         }
 
         private void OnCollisionEnter(Collision other)

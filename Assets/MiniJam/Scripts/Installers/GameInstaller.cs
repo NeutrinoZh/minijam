@@ -1,3 +1,4 @@
+using Game.InventorySystem;
 using UnityEngine;
 using Zenject;
 
@@ -6,6 +7,7 @@ namespace Game {
     {
         [SerializeField] private Player _player;
         [SerializeField] private Experience _experiencePrefab;
+        [SerializeField] private ItemSelectionScreen _itemSelectionScreen;
         
         public override void InstallBindings()
         {
@@ -15,8 +17,12 @@ namespace Game {
                 new PoolOfObject<Experience>(Container, _experiencePrefab)).AsSingle();
             
             Container.Bind<CastersRegister>().AsSingle();
+            Container.Bind<ItemsRegister>().AsSingle();
+            Container.Bind<PlayerInventory>().AsSingle();
             
             Container.Bind<Controls>().AsSingle();
+            
+            Container.Bind<ItemSelectionScreen>().FromInstance(_itemSelectionScreen).AsSingle();
             Container.Bind<Player>().FromInstance(_player).AsSingle();
         }
     }

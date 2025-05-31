@@ -20,7 +20,7 @@ namespace Game
         [SerializeField] private TextMeshProUGUI _namesLabel;
         [SerializeField] private TextMeshProUGUI _valuesLabel;
 
-        public Action OnSelect;
+        public event Action OnSelect;
         
         private string k_levelPattern;
         private PlayerCaster _playerCaster;
@@ -37,14 +37,14 @@ namespace Game
             _spell = spell;
             
             var spellCaster = _playerCaster.GetCasterOfSpell(spell.GetType());
-            var spellLevel = (spellCaster?.Level ?? 0) + 1;
+            var spellLevel = (spellCaster?.Level ?? -1) + 2;
             
             _iconImage.sprite = spell.Icon;
             _titleLabel.text = spell.Title;
             _levelLabel.text = k_levelPattern.Replace("{}", spellLevel.ToString());
             _descriptionLabel.text = spell.Description;
 
-            var properties = GetAllListProperties(spell);
+            var properties = Utils.GetAllListProperties(spell);
             var namesText = ""; 
             var valuesText = "<mspace=0.54em>";
 
@@ -66,31 +66,6 @@ namespace Game
             k_levelPattern = _levelLabel.text;
         }
         
-        private static IEnumerable<PropertyInfo> GetAllListProperties(object obj)
-        {
-            var currentType = obj.GetType();
-            var listProps = new List<PropertyInfo>();
-
-            while (currentType != null && currentType != typeof(object))
-            {
-                var props = currentType.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
-
-                listProps.AddRange(
-                    from property in props
-                    where property.PropertyType.IsGenericType
-                    let generic = property.PropertyType.GetGenericTypeDefinition()
-                    where generic == typeof(List<>)
-                    let genericArgument = property.PropertyType.GetGenericArguments()[0]
-                    where genericArgument == typeof(float)
-                    select property
-                    );
-
-                currentType = currentType.BaseType;
-            }
-            
-            return listProps.OrderBy(p => p.Name);
-        }
-
         public void OnPointerClick(PointerEventData eventData)
         {
             var spellType = _spell.GetType();

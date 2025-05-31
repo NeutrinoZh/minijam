@@ -9,7 +9,7 @@ namespace Game
         [SerializeField] private List<SpellSlot> _spellSlots;
         private PlayerCaster _playerCaster;
 
-        private int _freeSlotIndex = 0;
+        private int _freeSlotIndex;
 
         [Inject]
         public void Construct(Player player)
