@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962454c0212540cd8d94915f43ac2883, type: 3}
+  m_Name: MeteorSpell
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 21300000, guid: e56ebb38585de5a4ba6ae14ea1443c53,
+    type: 3}
+  <Title>k__BackingField: Meteor
+  <Description>k__BackingField: 'Calls down a blazing meteor from the sky, dealing
+    massive area damage upon impact. '
+  <MaxLevel>k__BackingField: 5
+  <Cooldown>k__BackingField:
+  - 6
+  - 5.5
+  - 5
+  - 4.5
+  - 4
+  <ProjectilePrefab>k__BackingField: {fileID: 2542481565233477511, guid: 830e34ab53946734ca2f6afba1ecc275,
+    type: 3}
+  <SightPrefab>k__BackingField: {fileID: 6698236955538410648, guid: 1d8ef043b877d044bb6d1fbfa297f673,
+    type: 3}
+  <ExplosionPrefab>k__BackingField: {fileID: 5298130220023210945, guid: d3cd035b8e350004c8635c32ced78580,
+    type: 3}
+  <Delay>k__BackingField: 0.5
+  <Duration>k__BackingField: 2
+  <Range>k__BackingField: {x: 5, y: 15}
+  <Damage>k__BackingField:
+  - 10
+  - 14
+  - 19
+  - 25
+  - 32
+  <NumberOfProjectiles>k__BackingField:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5

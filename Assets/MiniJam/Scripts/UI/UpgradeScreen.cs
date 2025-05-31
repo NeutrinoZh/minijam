@@ -44,17 +44,37 @@ namespace Game
         
         public void Show()
         {
+            Time.timeScale = 0.01f;
             gameObject.SetActive(true);
-            
-            for (var i = 0; i < 3; ++i)
+
+            var possibleSpells = _spells.ToList();
+
+            foreach (
+                var spell in from spell in _spells
+                let caster = _playerCaster.GetCasterOfSpell(spell.GetType())
+                where caster != null && caster.Level >= spell.MaxLevel
+                select spell
+            )
             {
-                var randomSpell = _spells[Random.Range(0, _spells.Count)];
+                possibleSpells.Remove(spell);
+            }
+
+            var numberOfVariants = possibleSpells.Count >= 3 ? 3 : possibleSpells.Count;
+            for (var i = 0; i < numberOfVariants; ++i)
+            {
+                var randomSpell = possibleSpells[Random.Range(0, possibleSpells.Count)];
+                possibleSpells.Remove(randomSpell);
+                
                 SetUpgradeSpell(i, randomSpell);
             }   
         }
 
         public void Hide()
         {
+            Time.timeScale = 1;
+            
+            foreach (var card in _upgradeCards) 
+                card.gameObject.SetActive(false);   
             gameObject.SetActive(false);
         }
         

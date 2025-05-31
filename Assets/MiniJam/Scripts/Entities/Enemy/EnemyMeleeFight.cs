@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -6,6 +7,8 @@ namespace Game
 {
     public class EnemyMeleeFight : MonoBehaviour
     {
+        public event Action<float> OnAttack;
+        
         private Entity _entity;
         private Player _player;
         private EntityDamagable _damagable;
@@ -31,13 +34,16 @@ namespace Game
             
             _attacking = true;
             _entity.CanMove = false;
-                
-            StartCoroutine(Attack());
+
+            var duration = Entity.BaseAttackDuration / _entity.AttackSpeed;
+            OnAttack?.Invoke(duration);
+            
+            StartCoroutine(Attack(duration));
         }
 
-        private IEnumerator Attack()
+        private IEnumerator Attack(float duration)
         {
-            yield return new WaitForSeconds(Entity.BaseAttackDuration / _entity.AttackSpeed);
+            yield return new WaitForSeconds(duration);
             _attacking = false;
             _entity.CanMove = true;
             _damagable.Damage(_entity.Attack);

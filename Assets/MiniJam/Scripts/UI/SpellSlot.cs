@@ -22,7 +22,8 @@ namespace Game
 
         private void OnDestroy()
         {
-            _caster.OnCast -= CastHandle;
+            if (_caster != null)
+                _caster.OnCast -= CastHandle;
         }
         
         private void CastHandle()

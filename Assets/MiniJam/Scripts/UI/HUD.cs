@@ -40,7 +40,7 @@ namespace Game
 
         private void UpdateLevelLabel()
         {
-            _levelLabel.text = _levelPattern.Replace("{}", _player.Level.ToString());
+            _levelLabel.text = _levelPattern.Replace("{}", (_player.Level + 1).ToString());
         }
 
         private void Update()
