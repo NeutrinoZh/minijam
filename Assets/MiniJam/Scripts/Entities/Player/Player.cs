@@ -31,18 +31,11 @@ namespace Game
             RequiredExperienceForLevelUp = _baseRequiredExperienceForLevelUp;
         }
 
-        private void Start()
-        {
-            _playerAsEntity.OnDeath += OnDeath;
-        }
-
-        private void OnDestroy()
-        {
-            _playerAsEntity.OnDeath -= OnDeath;
-        }
-
         private void OnCollisionEnter(Collision other)
         {
+            if (!_playerAsEntity.IsAlive)
+                return;
+            
             if (!other.transform.TryGetComponent(out Experience experience))
                 return;
             
@@ -57,11 +50,6 @@ namespace Game
             RequiredExperienceForLevelUp *= _multiplierFactorOfRequiredExperienceByLevel;
             
             OnLevelUp?.Invoke();
-        }
-
-        private void OnDeath()
-        {
-            gameObject.SetActive(false);
         }
     }
 }
