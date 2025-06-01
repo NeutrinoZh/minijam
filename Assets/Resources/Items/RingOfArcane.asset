@@ -15,9 +15,9 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: d87a83f4156717f4a9465f6797388021,
     type: 3}
   <Title>k__BackingField: Ring Of Arcane
-  <Description>k__BackingField: Ring Of Arcane reduce cooldown
-  <MaxLevel>k__BackingField: 3
+  <Description>k__BackingField: Reduce spells cooldown
+  <MaxLevel>k__BackingField: 2
   <Cooldown>k__BackingField:
+  - -0.5
   - -0.1
-  - -0.2
-  - -0.3
+  - -0.15

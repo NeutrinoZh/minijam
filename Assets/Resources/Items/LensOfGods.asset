@@ -15,9 +15,9 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: d87a83f4156717f4a9465f6797388021,
     type: 3}
   <Title>k__BackingField: Lens Of Gods
-  <Description>k__BackingField: Lens Of Gods
-  <MaxLevel>k__BackingField: 3
+  <Description>k__BackingField: Increase radius of spells
+  <MaxLevel>k__BackingField: 2
   <Radius>k__BackingField:
-  - 0.2
-  - 0.4
-  - 0.6
+  - 0.5
+  - 0.1
+  - 0.15

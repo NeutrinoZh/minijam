@@ -24,10 +24,15 @@ MonoBehaviour:
   - 4.5
   - 4
   - 3.5
+  - 3.5
   <ProjectilePrefab>k__BackingField: {fileID: -6533492903021583423, guid: 462a771224ed15a49a9663602749569f,
     type: 3}
   <Duration>k__BackingField:
   - 2
+  - 2
+  - 2.2
+  - 2.2
+  - 2.3
   <Radius>k__BackingField:
   - 3
   - 3

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e81aadc070d4a6797bcf182072a3c7d, type: 3}
-  m_Name: Eye
+  m_Name: HotDevil
   m_EditorClassIdentifier: 
-  <MoveSpeed>k__BackingField: 2.8
-  <RangeOfAttack>k__BackingField: 2.5
-  <AttackSpeed>k__BackingField: 5
-  <Attack>k__BackingField: 15
-  <MaxHealth>k__BackingField: 300
+  <MoveSpeed>k__BackingField: 3
+  <RangeOfAttack>k__BackingField: 10
+  <AttackSpeed>k__BackingField: 8
+  <Attack>k__BackingField: 12
+  <MaxHealth>k__BackingField: 60
   <RangeOfPickUp>k__BackingField: 0
