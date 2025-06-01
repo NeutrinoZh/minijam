@@ -20,10 +20,10 @@ MonoBehaviour:
   <MaxLevel>k__BackingField: 4
   <Cooldown>k__BackingField:
   - 4.5
+  - 4
   - 3.5
-  - 2.3
-  - 1
-  - 0.6
+  - 3
+  - 3
   <ProjectilePrefab>k__BackingField: {fileID: 8963859544603979715, guid: e912c160dd95e0148a878df61721c229,
     type: 3}
   <Damage>k__BackingField:

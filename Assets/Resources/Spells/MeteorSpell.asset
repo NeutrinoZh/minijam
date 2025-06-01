@@ -32,15 +32,16 @@ MonoBehaviour:
     type: 3}
   <Delay>k__BackingField: 0.5
   <Duration>k__BackingField: 2
-  <Range>k__BackingField: {x: 5, y: 15}
+  <Range>k__BackingField: {x: 5, y: 10}
   <Damage>k__BackingField:
-  - 10
-  - 14
-  - 19
+  - 15
+  - 20
   - 25
-  - 32
+  - 30
+  - 35
   <Projectiles>k__BackingField:
-  - 1
-  - 2
+  - 3
   - 3
   - 4
+  - 4
+  - 5
