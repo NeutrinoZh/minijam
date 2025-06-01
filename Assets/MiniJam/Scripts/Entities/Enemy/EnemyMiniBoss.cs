@@ -6,12 +6,16 @@ namespace Game
 {
     public class EnemyMiniBoss : MonoBehaviour
     {
+        [SerializeField] private Transform _chest;
+        
         private Entity _entity;
         private ItemSelectionScreen _itemSelectionScreen;
-
+        private DiContainer _container;
+        
         [Inject]
-        public void Construct(ItemSelectionScreen itemSelectionScreen)
+        public void Construct(DiContainer container, ItemSelectionScreen itemSelectionScreen)
         {
+            _container = container;
             _itemSelectionScreen = itemSelectionScreen;
             _entity = GetComponent<Entity>();
         }
@@ -28,7 +32,11 @@ namespace Game
 
         private void HandleDeath()
         {
-            _itemSelectionScreen.Show();
+            var clone = _container.InstantiatePrefab(_chest);
+            clone.transform.position = new Vector3(
+                transform.position.x,
+                -7.5f,
+                transform.position.z);
         }
     }
 }
