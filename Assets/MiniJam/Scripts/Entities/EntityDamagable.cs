@@ -50,7 +50,7 @@ namespace Game
         {
             var clone = Instantiate(_damageNumberPrefab);
             clone.transform.position = transform.position;
-            clone.Text = amount.ToString(CultureInfo.InvariantCulture);
+            clone.Text = amount.ToString("0.#");
         }
     }
 }

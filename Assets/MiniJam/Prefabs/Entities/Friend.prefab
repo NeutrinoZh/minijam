@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 5
-  _gainDamageByLevel: 0
+  _gainDamageByLevel: 2
 --- !u!114 &7013503916364677393
 MonoBehaviour:
   m_ObjectHideFlags: 0

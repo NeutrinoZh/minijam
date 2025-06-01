@@ -29,7 +29,7 @@ MonoBehaviour:
     type: 3}
   <SightPrefab>k__BackingField: {fileID: 6698236955538410648, guid: 1d8ef043b877d044bb6d1fbfa297f673,
     type: 3}
-  <ExplosionPrefab>k__BackingField: {fileID: 5298130220023210945, guid: d3cd035b8e350004c8635c32ced78580,
+  <ExplosionPrefab>k__BackingField: {fileID: 6964703934571581852, guid: d3cd035b8e350004c8635c32ced78580,
     type: 3}
   <Delay>k__BackingField: 0.5
   <Duration>k__BackingField: 2

@@ -55,6 +55,7 @@ namespace Game
         private void SpawnExplosion(Vector3 position)
         {
             var explosion = Object.Instantiate(_spell.ExplosionPrefab);
+            explosion.Construct(this);
             explosion.transform.position = position;   
         }
     }

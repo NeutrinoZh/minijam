@@ -8,7 +8,7 @@ namespace Game
     {
         [field: SerializeField] public MeteorProjectile ProjectilePrefab { get; private set; }
         [field: SerializeField] public Transform SightPrefab { get; private set; }
-        [field: SerializeField] public Transform ExplosionPrefab { get; private set; }
+        [field: SerializeField] public ExplosionProjectile ExplosionPrefab { get; private set; }
         
         [field: SerializeField] public float Delay { get; private set; }
         [field: SerializeField] public float Duration { get; private set; }

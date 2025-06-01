@@ -47,7 +47,7 @@ namespace Game
             if (other.gameObject.layer == _floorLayer)
                 OnCollisionFloor?.Invoke();
             else if (other.TryGetComponent(out EntityDamagable entityDamagable)) 
-                entityDamagable.Damage(_meteorCaster.Damage);
+                entityDamagable.Damage(_meteorCaster.Damage / 3);
         }
     }
 }
