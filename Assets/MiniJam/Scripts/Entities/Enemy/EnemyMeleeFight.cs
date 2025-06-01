@@ -44,9 +44,12 @@ namespace Game
         private IEnumerator Attack(float duration)
         {
             yield return new WaitForSeconds(duration);
+            
             _attacking = false;
             _entity.CanMove = true;
-            _damagable.Damage(_entity.Attack);
+            
+            if (_entity.IsAlive)
+                _damagable.Damage(_entity.Attack);
         }
     }
 }

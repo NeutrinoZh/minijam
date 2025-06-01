@@ -36,14 +36,14 @@ namespace Game
             _entity.OnHit?.Invoke(amount);
             if (_entity.Health > 0)
                 return;
-
-            _entity.IsAlive = false;
-            _entity.OnDeath?.Invoke();
             
             if (TryGetComponent(out BoxCollider boxCollider))
                 boxCollider.enabled = false;
             if (TryGetComponent(out Rigidbody body))
                 body.isKinematic = true;
+            
+            _entity.IsAlive = false;
+            _entity.OnDeath?.Invoke();
         }
 
         private void ShowDamageNumber(float amount)

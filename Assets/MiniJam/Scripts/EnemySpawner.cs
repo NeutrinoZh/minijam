@@ -14,13 +14,13 @@ namespace Game
 
         private float _spawnDelay;
         private DiContainer _container;
-        private Player _player;
+        private Entity _player;
 
         [Inject]
         public void Construct(DiContainer container, Player player)
         {
             _container = container;
-            _player = player;
+            _player = player.GetComponent<Entity>();
         }
 
         private void Start()
@@ -33,7 +33,7 @@ namespace Game
 
         private IEnumerator DecreaseDelayRoutine()
         {
-            while (true)
+            while (_player.IsAlive)
             {
                 _spawnDelay *= _multiplierFactor;
                 yield return new WaitForSeconds(1);
@@ -43,9 +43,9 @@ namespace Game
         // ReSharper disable Unity.PerformanceAnalysis
         private IEnumerator SpawnRoutine()
         {
-            while (_player)
+            while (_player.IsAlive)
             {
-                var position = Random.insideUnitCircle * Random.Range(_range.x, _range.y);
+                var position = Random.insideUnitCircle.normalized * Random.Range(_range.x, _range.y);
 
                 var clone = _container.InstantiatePrefabForComponent<Enemy>(_enemyPrefab);
                 clone.transform.position = _player.transform.position + new Vector3(position.x, 0, position.y);

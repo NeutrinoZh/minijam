@@ -22,6 +22,20 @@ namespace Game
         {
             _itemsRegister = itemsRegister;
         }
+
+        public bool IsFull()
+        {
+            return _items.Count == 3;
+        }
+
+        public bool HasItem(Type typeOfItem)
+        {
+            if (!typeOfItem.DerivesFrom(typeof(Item)))
+                return false;
+            
+            var item = _itemsRegister.GetItemByType(typeOfItem);
+            return _items.ContainsKey(item);
+        }
         
         public void AddOrLevelUpItem(Type typeOfItem)
         {
@@ -48,8 +62,8 @@ namespace Game
         
         public float GetSumOfBuff(string key)
         {
-            // if (_cacheOfBuffs.TryGetValue(key, out var cache))
-            //     return cache;
+            if (_cacheOfBuffs.TryGetValue(key, out var cache))
+                return cache;
             
             var sum = (
                 from item in _items 
@@ -60,7 +74,7 @@ namespace Game
                 select item.Value >= listOfValues.Count ? listOfValues.Last() : listOfValues[item.Value])
                 .Sum() + 1;
             
-            // _cacheOfBuffs.Add(key, sum);
+            _cacheOfBuffs.Add(key, sum);
             return sum;
         }
     }

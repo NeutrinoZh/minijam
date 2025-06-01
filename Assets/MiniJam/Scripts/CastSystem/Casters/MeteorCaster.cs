@@ -31,7 +31,7 @@ namespace Game
         {
             for (var i = 0; i < Projectiles; i++)
             {
-                var randomOffset = Random.insideUnitCircle * Random.Range(_spell.Range.x, _spell.Range.y);
+                var randomOffset = Random.insideUnitCircle.normalized * Random.Range(_spell.Range.x, _spell.Range.y);
                 var position = caster.position + new Vector3(randomOffset.x, -0.4f, randomOffset.y);
 
                 var sight = Object.Instantiate(_spell.SightPrefab);

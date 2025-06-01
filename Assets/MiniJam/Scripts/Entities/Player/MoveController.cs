@@ -8,7 +8,10 @@ namespace Game
         [SerializeField] private float _speed;
         [SerializeField] private float _rotationSpeed;
         
+        public Vector2 Direction => _controls.Actions.Player.Move.ReadValue<Vector2>();
+        
         private Controls _controls;
+        private Entity _playerAsEntity;
         
         [Inject]
         public void Construct(Controls controls)
@@ -16,9 +19,17 @@ namespace Game
             _controls = controls;
         }
 
+        private void Awake()
+        {
+            _playerAsEntity = GetComponent<Entity>();
+        }
+        
         private void Update()
         {
-            var direction = _controls.Actions.Player.Move.ReadValue<Vector2>();
+            if (!_playerAsEntity.CanMove || !_playerAsEntity.IsAlive)
+                return;
+            
+            var direction = Direction;
             if (direction == Vector2.zero)
                 return;
             

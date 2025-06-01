@@ -13,6 +13,7 @@ namespace Game
         
         private CastersRegister _castersRegister;
         private readonly Dictionary<Type, Caster> _casters = new();
+        private Entity _playerAsEntity;
         
         [Inject]
         public void Construct(CastersRegister casterRegister)
@@ -20,6 +21,11 @@ namespace Game
             _castersRegister = casterRegister;
         }
 
+        private void Awake()
+        {
+            _playerAsEntity = GetComponent<Entity>();
+        }
+        
         public void AddSpell(Type spellType)
         {
             if (!spellType.DerivesFrom(typeof(Spell)))
@@ -40,7 +46,7 @@ namespace Game
         
         private IEnumerator StartCasting(Caster caster)
         {
-            while (true)
+            while (_playerAsEntity.IsAlive)
             {
                 caster.Cast(transform);
                 yield return new WaitForSeconds(caster.Cooldown);

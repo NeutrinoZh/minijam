@@ -18,6 +18,9 @@ namespace Game
             
             foreach (var obj in Objects)
             {
+                if (obj.TryGetComponent(out Entity entity) && !entity.IsAlive)
+                    continue;
+                
                 var sqrDistance = (obj.transform.position - position).sqrMagnitude;
                 if (sqrDistance > nearestSqrDistance)
                     continue;

@@ -7,7 +7,8 @@ namespace Game
     [SpellCaster(SpellType = typeof(FireBallSpell))]
     public class FireBallCaster : Caster
     {
-        public float Damage => Level >= _spell.Damage.Count ? _spell.Damage.Last() : _spell.Damage[Level];
+        public float Damage => 
+            (Level >= _spell.Damage.Count ? _spell.Damage.Last() : _spell.Damage[Level]) * PlayerInventory.GetSumOfBuff(nameof(Damage));
         public float Speed => Level >= _spell.Speed.Count ? _spell.Speed.Last() : _spell.Speed[Level];
         
         private readonly FireBallSpell _spell;
@@ -26,7 +27,7 @@ namespace Game
         // ReSharper disable Unity.PerformanceAnalysis
         protected override void CastInternal(Transform caster)
         {
-            const float angleOffset = 15f;
+            const float angleOffset = 25f;
             
             var nearestEnemy = _enemies.GetNearestTo(caster.position);
             var directionToEnemy = (nearestEnemy.transform.position - caster.position).normalized;

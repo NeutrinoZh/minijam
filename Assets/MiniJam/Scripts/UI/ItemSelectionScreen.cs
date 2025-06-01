@@ -39,7 +39,7 @@ namespace Game
         
         public void Show()
         {
-            Time.timeScale = 0.01f;
+            Time.timeScale = 0.001f;
             gameObject.SetActive(true);
             
             var possibleItems = _items.ToList();
