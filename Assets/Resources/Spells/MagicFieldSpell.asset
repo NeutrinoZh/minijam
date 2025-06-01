@@ -21,21 +21,22 @@ MonoBehaviour:
   <MaxLevel>k__BackingField: 4
   <Cooldown>k__BackingField:
   - 5
+  - 4.5
   - 4
-  - 3
+  - 3.5
   <ProjectilePrefab>k__BackingField: {fileID: -6533492903021583423, guid: 462a771224ed15a49a9663602749569f,
     type: 3}
   <Duration>k__BackingField:
   - 2
   <Radius>k__BackingField:
-  - 2
   - 3
+  - 3
+  - 3.5
+  - 3.5
   - 4
-  - 5
-  - 6
   <Damage>k__BackingField:
   - 5
+  - 6
   - 7
-  - 9
-  - 12
-  - 15
+  - 8
+  - 10
