@@ -35,7 +35,9 @@ namespace Game
             
             var directionToEnemy = (nearestEnemy.transform.position - caster.position).normalized;
             
-            for (var i = -1; i <= 1; ++i)
+            var number = 3 * PlayerInventory.GetSumOfBuff("Projectiles");
+            
+            for (var i = -(number / 2); i <= number / 2; ++i)
             { 
                 var angle = angleOffset * i;
                 var direction = Quaternion.AngleAxis(angle, Vector3.up) * directionToEnemy;

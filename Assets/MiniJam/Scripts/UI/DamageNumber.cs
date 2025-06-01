@@ -19,6 +19,11 @@ namespace Game
             get => _textMesh.text;
             set => _textMesh.text = value;
         }
+
+        public void SetColor(Color color)
+        {
+            _textMesh.color = color;
+        }
         
         private void Awake()
         {
