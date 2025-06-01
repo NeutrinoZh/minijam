@@ -47,6 +47,7 @@ namespace Game
             foreach (
                 var item in from item in _items
                 where item != null && _inventory.GetLevelOfItem(item) >= item.MaxLevel
+                where _inventory.IsFull() && !_inventory.HasItem(item.GetType())
                 select item
             )
             {

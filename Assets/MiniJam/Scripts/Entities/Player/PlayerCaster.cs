@@ -38,6 +38,16 @@ namespace Game
             
             OnAddNewSpell?.Invoke(caster);
         }
+        
+        public bool IsFull()
+        {
+            return _casters.Count == 4;
+        }
+
+        public bool HasSpell(Type typeOfSpell)
+        {
+            return typeOfSpell.DerivesFrom(typeof(Item)) && _casters.ContainsKey(typeOfSpell);
+        }
 
         public Caster GetCasterOfSpell(Type type)
         {

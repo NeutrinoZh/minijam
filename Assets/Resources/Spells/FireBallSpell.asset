@@ -17,6 +17,7 @@ MonoBehaviour:
   <Title>k__BackingField: Fire Ball
   <Description>k__BackingField: 'Launch a concentrated ball of fire at the nearest
     enemy, searing them with intense heat. '
+  <CanOnFirstLevel>k__BackingField: 1
   <MaxLevel>k__BackingField: 4
   <Cooldown>k__BackingField:
   - 4

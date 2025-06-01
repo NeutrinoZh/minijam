@@ -17,6 +17,7 @@ MonoBehaviour:
   <Title>k__BackingField: Meteor
   <Description>k__BackingField: 'Calls down a blazing meteor from the sky, dealing
     massive area damage upon impact. '
+  <CanOnFirstLevel>k__BackingField: 1
   <MaxLevel>k__BackingField: 4
   <Cooldown>k__BackingField:
   - 6
