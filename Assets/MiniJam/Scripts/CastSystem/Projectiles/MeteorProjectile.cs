@@ -16,7 +16,7 @@ namespace Game
         {
             _meteorCaster = caster;
         }
-        
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -27,12 +27,12 @@ namespace Game
         {
             StartCoroutine(DelayRoutine());
         }
-        
+
         private void Update()
         {
             if (!_startFalling)
                 return;
-            
+
             _rigidbody.velocity = Vector3.down * 10f;
         }
 
@@ -41,13 +41,15 @@ namespace Game
             yield return new WaitForSeconds(_meteorCaster.Delay);
             _startFalling = true;
         }
-        
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer == _floorLayer)
                 OnCollisionFloor?.Invoke();
-            else if (other.TryGetComponent(out EntityDamagable entityDamagable)) 
+            else if (other.TryGetComponent(out EntityDamagable entityDamagable))
                 entityDamagable.Damage(_meteorCaster.Damage / 3);
+
+            Destroy(gameObject);
         }
     }
 }

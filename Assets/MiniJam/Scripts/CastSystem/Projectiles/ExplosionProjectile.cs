@@ -8,7 +8,7 @@ namespace Game
 
         public void Construct(MeteorCaster caster)
         {
-            _caster = _caster;
+            _caster = caster;
         }
 
         private void OnTriggerEnter(Collider collision)
