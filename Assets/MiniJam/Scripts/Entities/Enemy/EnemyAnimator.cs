@@ -58,7 +58,10 @@ namespace Game
             var renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
             foreach (var skinned in renderers)
             {
-                var instance = new Material(_deathMaterial); 
+                var instance = new Material(_deathMaterial) {
+                    mainTexture = skinned.material.mainTexture
+                };
+                
                 skinned.material = instance;
                 
                 Tween.Custom(
