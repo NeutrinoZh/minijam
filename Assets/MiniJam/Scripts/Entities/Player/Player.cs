@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Game
@@ -31,6 +33,16 @@ namespace Game
             RequiredExperienceForLevelUp = _baseRequiredExperienceForLevelUp;
         }
 
+        private void Start()
+        {
+            _playerAsEntity.OnDeath += HandleDeath;
+        }
+
+        private void OnDestroy()
+        {
+            _playerAsEntity.OnDeath -= HandleDeath;
+        }
+
         private void OnCollisionEnter(Collision other)
         {
             if (!_playerAsEntity.IsAlive)
@@ -50,6 +62,17 @@ namespace Game
             RequiredExperienceForLevelUp *= _multiplierFactorOfRequiredExperienceByLevel;
             
             OnLevelUp?.Invoke();
+        }
+
+        private void HandleDeath()
+        {
+            StartCoroutine(LoadMenuRoutine());
+        }
+
+        private IEnumerator LoadMenuRoutine()
+        {
+            yield return new WaitForSeconds(4);
+            SceneManager.LoadScene(sceneBuildIndex: 0);
         }
     }
 }

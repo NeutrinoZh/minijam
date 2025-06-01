@@ -7,6 +7,7 @@ namespace Game
     {
         [SerializeField] private float _speed;
         [SerializeField] private float _rotationSpeed;
+        [SerializeField] private Bounds _bounds;
         
         public Vector2 Direction => _controls.Actions.Player.Move.ReadValue<Vector2>();
         
@@ -37,8 +38,11 @@ namespace Game
             var velocity = Time.deltaTime * _speed * moveDirection;
             
             var targetRotation = Quaternion.LookRotation(moveDirection);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime); 
-            transform.position += velocity;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+            
+            var futurePosition = transform.position + velocity;
+            if (_bounds.Contains(futurePosition))
+                transform.position = futurePosition;
         }
     }
 }

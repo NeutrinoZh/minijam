@@ -11,6 +11,8 @@ namespace Game {
         
         public override void InstallBindings()
         {
+            Container.Bind<ItemSelectionScreen>().FromInstance(_itemSelectionScreen).AsSingle();
+            
             Container.Bind<ListOfObject<Enemy>>().AsSingle();
             Container.Bind<ListOfObject<Projectile>>().AsSingle();
             Container.Bind<PoolOfObject<Experience>>().FromInstance(
@@ -22,7 +24,6 @@ namespace Game {
             
             Container.Bind<Controls>().AsSingle();
             
-            Container.Bind<ItemSelectionScreen>().FromInstance(_itemSelectionScreen).AsSingle();
             Container.Bind<Player>().FromInstance(_player).AsSingle();
         }
     }

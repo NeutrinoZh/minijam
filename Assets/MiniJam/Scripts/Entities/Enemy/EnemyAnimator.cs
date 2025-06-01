@@ -14,6 +14,7 @@ namespace Game
         private static readonly int k_deathId = Animator.StringToHash("Base Layer.Death");
         private static readonly int k_attackId = Animator.StringToHash("Base Layer.Attack");
         private static readonly int k_opacity = Shader.PropertyToID("_Opacity");
+        private static readonly int k_mainTex = Shader.PropertyToID("_MainTex");
 
         private Animator _animator;
         private Entity _entity;
@@ -65,11 +66,12 @@ namespace Game
             var renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
             foreach (var skinned in renderers)
             {
-                var instance = new Material(_deathMaterial) {
-                    mainTexture = skinned.material.mainTexture
-                };
+                var instance = new Material(_deathMaterial);
+                var texture = skinned.material.mainTexture;
                 
                 skinned.material = instance;
+                skinned.material.mainTexture = texture;
+                skinned.material.SetTexture(k_mainTex, texture);
                 
                 Tween.Custom(
                     1f, 0f, duration - 0.5f,

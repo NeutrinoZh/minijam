@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962454c0212540cd8d94915f43ac2883, type: 3}
   m_Name: MeteorSpell
   m_EditorClassIdentifier: 
-  <Icon>k__BackingField: {fileID: 21300000, guid: e56ebb38585de5a4ba6ae14ea1443c53,
+  <Icon>k__BackingField: {fileID: 21300000, guid: 73a714e7ddc4c60479712f30911a44bb,
     type: 3}
   <Title>k__BackingField: Meteor
   <Description>k__BackingField: 'Calls down a blazing meteor from the sky, dealing

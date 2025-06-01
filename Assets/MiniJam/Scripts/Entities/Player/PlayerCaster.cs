@@ -56,6 +56,8 @@ namespace Game
         
         private IEnumerator StartCasting(Caster caster)
         {
+            yield return new WaitForSeconds(1);
+            
             while (_playerAsEntity.IsAlive)
             {
                 caster.Cast(transform);

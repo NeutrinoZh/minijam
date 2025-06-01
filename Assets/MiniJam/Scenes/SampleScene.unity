@@ -756,7 +756,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Choose an upgrade
+  m_text: Choose an item
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90ce72c4825707841bc3a10917b868d6, type: 2}
   m_sharedMaterial: {fileID: 6785268894782074855, guid: 90ce72c4825707841bc3a10917b868d6,
@@ -1393,7 +1393,7 @@ MonoBehaviour:
   _player: {fileID: 384120447}
   _experiencePrefab: {fileID: -8197700048124896270, guid: 0cd2bda961f00a944a83331d3319a4ac,
     type: 3}
-  _itemSelectionScreen: {fileID: 0}
+  _itemSelectionScreen: {fileID: 406936042}
 --- !u!224 &942215221 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5233031349619174279, guid: 0e41dfb2fc2e7f449a84e5b9f20e87d0,
