@@ -15,9 +15,9 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: 69f4c89e4b1de164485dea299438726f,
     type: 3}
   <Title>k__BackingField: Seal Of Cleavage
-  <Description>k__BackingField: Seal Of Cleavage
-  <MaxLevel>k__BackingField: 3
+  <Description>k__BackingField: Increase number of projectiles
+  <MaxLevel>k__BackingField: 2
   <Projectiles>k__BackingField:
+  - 0.2
   - 0.3
-  - 0.5
-  - 0.8
+  - 0.4
