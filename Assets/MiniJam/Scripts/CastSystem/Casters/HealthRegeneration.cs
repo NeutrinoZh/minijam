@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEngine;
 using Zenject;
@@ -9,17 +8,15 @@ namespace Game
     public class HealthRegenerationCaster : Caster
     {
         public float Heal =>
-            (Level >= _spell.HealthRegeneration.Count ? _spell.HealthRegeneration.Last() : _spell.HealthRegeneration[Level]) * PlayerInventory.GetSumOfBuff(nameof(Heal));
+            (Level >= _spell.Regeneration.Count ? _spell.Regeneration.Last() : _spell.Regeneration[Level]) * PlayerInventory.GetSumOfBuff(nameof(Heal));
 
         private readonly HealthRegenerationSpell _spell;
-        private readonly DiContainer _container;
         private readonly Entity _player;
 
         [Inject]
-        public HealthRegenerationCaster(DiContainer container, PlayerInventory inventory, HealthRegenerationSpell spell, Player player) :
+        public HealthRegenerationCaster(PlayerInventory inventory, HealthRegenerationSpell spell, Player player) :
             base(spell, inventory)
         {
-            _container = container;
             _spell = spell;
             _player = player.GetComponent<Entity>();
         }

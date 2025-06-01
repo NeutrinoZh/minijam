@@ -20,7 +20,7 @@ namespace Game
             _container = container;
             LoadCasters();    
         }
-
+        
         private Spell LoadSpell(Type type)
         {
             if (!type.IsSubclassOf(typeof(Spell)))

@@ -28,6 +28,9 @@ namespace Game
         protected override void CastInternal(Transform caster)
         {
             var nearestEnemy = _enemies.GetNearestTo(caster.position);
+            if (!nearestEnemy)
+                return;
+            
             var direction = (nearestEnemy.transform.position -  caster.position).normalized;
             
             var clone = _container.InstantiatePrefabForComponent<IceArrowProjectile>(_spell.ProjectilePrefab);

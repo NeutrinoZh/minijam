@@ -17,7 +17,9 @@ namespace Game
 
         private Animator _animator;
         private Entity _entity;
+        
         private EnemyMeleeFight _enemyMeleeFight;
+        private EnemyRangeFight _enemyRangeFight;
 
         private AnimationClip _attackClip;
         private AnimationClip _deathClip;
@@ -27,6 +29,7 @@ namespace Game
             _entity = GetComponent<Entity>();
             _animator = GetComponentInChildren<Animator>();
             _enemyMeleeFight = GetComponent<EnemyMeleeFight>();
+            _enemyRangeFight = GetComponent<EnemyRangeFight>();
         }
 
         private void Start()
@@ -42,13 +45,17 @@ namespace Game
                 .First(c => c.name == "Death");
             
             _entity.OnDeath += DeathHandle;
-            _enemyMeleeFight.OnAttack += AttackHandle;
+            
+            if (_enemyMeleeFight) _enemyMeleeFight.OnAttack += AttackHandle;
+            if (_enemyRangeFight) _enemyRangeFight.OnAttack += AttackHandle;
         }
 
         private void OnDestroy()
         {
             _entity.OnDeath -= DeathHandle;
-            _enemyMeleeFight.OnAttack -= AttackHandle;
+            
+            if (_enemyMeleeFight) _enemyMeleeFight.OnAttack -= AttackHandle;
+            if (_enemyRangeFight) _enemyRangeFight.OnAttack -= AttackHandle;
         }
 
         private void DeathHandle()
@@ -58,7 +65,10 @@ namespace Game
             var renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
             foreach (var skinned in renderers)
             {
-                var instance = new Material(_deathMaterial); 
+                var instance = new Material(_deathMaterial) {
+                    mainTexture = skinned.material.mainTexture
+                };
+                
                 skinned.material = instance;
                 
                 Tween.Custom(

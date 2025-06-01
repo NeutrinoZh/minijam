@@ -11,13 +11,15 @@ namespace Game
         
         private List<Spell> _spells;
         
+        private CastersRegister _castersRegister;
         private PlayerCaster _playerCaster;
         private Player _player;
         
         [Inject]
-        public void Construct(Player player)
+        public void Construct(Player player, CastersRegister castersRegister)
         {
             _player = player;
+            _castersRegister = castersRegister;
             _playerCaster = player.GetComponent<PlayerCaster>();
         }
         
@@ -48,17 +50,19 @@ namespace Game
             gameObject.SetActive(true);
 
             var possibleSpells = _spells.ToList();
-
+            
             foreach (
                 var spell in from spell in _spells
+                where _player.Level != 0 || (_player.Level == 0 && !spell.CanOnFirstLevel)
                 let caster = _playerCaster.GetCasterOfSpell(spell.GetType())
                 where caster != null && caster.Level >= spell.MaxLevel
+                where _playerCaster.IsFull() && !_playerCaster.HasSpell(caster.Spell.GetType())
                 select spell
             )
             {
                 possibleSpells.Remove(spell);
             }
-
+            
             var numberOfVariants = possibleSpells.Count >= 3 ? 3 : possibleSpells.Count;
             for (var i = 0; i < numberOfVariants; ++i)
             {

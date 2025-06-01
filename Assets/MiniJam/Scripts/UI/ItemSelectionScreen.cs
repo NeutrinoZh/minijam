@@ -5,6 +5,7 @@ using Zenject;
 
 namespace Game
 {
+    [DefaultExecutionOrder(-1)]
     public class ItemSelectionScreen : MonoBehaviour
     {
         [SerializeField] private List<ItemCard> _itemsCards;
@@ -39,13 +40,14 @@ namespace Game
         
         public void Show()
         {
-            Time.timeScale = 0.001f;
+            Time.timeScale = 0.01f;
             gameObject.SetActive(true);
             
             var possibleItems = _items.ToList();
             foreach (
                 var item in from item in _items
                 where item != null && _inventory.GetLevelOfItem(item) >= item.MaxLevel
+                where _inventory.IsFull() && !_inventory.HasItem(item.GetType())
                 select item
             )
             {

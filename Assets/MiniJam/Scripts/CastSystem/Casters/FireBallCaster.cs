@@ -30,6 +30,9 @@ namespace Game
             const float angleOffset = 25f;
             
             var nearestEnemy = _enemies.GetNearestTo(caster.position);
+            if (!nearestEnemy)
+                return;
+            
             var directionToEnemy = (nearestEnemy.transform.position - caster.position).normalized;
             
             for (var i = -1; i <= 1; ++i)

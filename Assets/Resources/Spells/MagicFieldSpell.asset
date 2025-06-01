@@ -17,6 +17,7 @@ MonoBehaviour:
   <Title>k__BackingField: Magic Field
   <Description>k__BackingField: Creates a powerful magical field that repels all
     enemies within its radius, knocking them back and dealing damage.
+  <CanOnFirstLevel>k__BackingField: 1
   <MaxLevel>k__BackingField: 4
   <Cooldown>k__BackingField:
   - 5
